@@ -1,5 +1,7 @@
 package com.zedrays.hackerrank;
-import java.lang.invoke.SwitchPoint;
+
+import com.zedrays.Common.BasicExecutionPS;
+
 import java.util.Scanner;
 
 /**
