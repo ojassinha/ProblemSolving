@@ -20,6 +20,9 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
             case "topview":
                 printTopViewOfTree(node);
                 break;
+            case "lot":
+                printLevelOrderTraversal(node);
+                break;
             default:
                 System.out.print("Error in execution, please give proper problem name");
         }
@@ -86,11 +89,12 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
 
         while (!queue.isEmpty()){
 
-            System.out.println(queue.poll());
-            if(rootNode.getLeftTreeNode()!=null)
-                queue.add(rootNode.getLeftTreeNode());
-            if(rootNode.getRightTreeNode() != null)
-                queue.add(rootNode.getRightTreeNode());
+            TreeNode newNode = queue.poll();
+            System.out.println(newNode.getData());
+            if(newNode.getLeftTreeNode()!=null)
+                queue.add(newNode.getLeftTreeNode());
+            if(newNode.getRightTreeNode() != null)
+                queue.add(newNode.getRightTreeNode());
         }
     }
 
@@ -108,7 +112,32 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
     }
 
     @Override
-    public void insert(int data, TreeNode rootTreeNode) {
+    public TreeNode insert(int data, TreeNode rootTreeNode) {
+
+        TreeNode newNode = new TreeNode(data);
+
+        TreeNode tempNode;
+        while (rootTreeNode != null){
+
+            if(data < rootTreeNode.getData()){
+                tempNode = rootTreeNode;
+                rootTreeNode = rootTreeNode.getLeftTreeNode();
+
+            }else if(data > rootTreeNode.getData()){
+                tempNode = rootTreeNode;
+                rootTreeNode = rootTreeNode.getRightTreeNode();
+            }
+
+        }
+
+        if(data > rootTreeNode.getData()){
+            rootTreeNode.setRightTreeNode(newNode);
+        }else{
+            rootTreeNode.setLeftTreeNode(newNode);
+        }
+
+        return newNode;
+
 
     }
 

@@ -11,4 +11,5 @@ public interface GFGProblemsDS {
     void printTopViewOfTree(TreeNode rootNode);
 
     void printLevelOrderTraversal(TreeNode rootNode);
+
 }

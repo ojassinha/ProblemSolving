@@ -9,7 +9,7 @@ public interface BasicExecutionDS {
 
     TreeNode build();
     void run(String problemName, TreeNode node);
-    void insert(int data, TreeNode rootTreeNode);
+    TreeNode insert(int data, TreeNode rootTreeNode);
     void delete(int data,TreeNode rootTreeNode);
     TreeNode search(int data);
 }
