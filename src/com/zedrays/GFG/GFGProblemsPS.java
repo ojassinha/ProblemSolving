@@ -6,4 +6,5 @@ package com.zedrays.GFG;
 public interface GFGProblemsPS {
 
 
+    public void floodFillAlgo(int[][] originalColor,int x,int y, int newColor);
 }

@@ -11,7 +11,8 @@ public class CommonImplGFG implements CommonFactory {
 
     @Override
     public BasicExecutionPS returnPSProblem() {
-        return null;
+        BasicExecutionPS basicExecutionPS = new GFGProblemPSImpl();
+        return basicExecutionPS;
     }
 
     @Override
