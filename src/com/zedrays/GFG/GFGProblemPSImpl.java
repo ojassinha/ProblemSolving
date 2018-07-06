@@ -71,7 +71,7 @@ public class GFGProblemPSImpl implements GFGProblemsPS, BasicExecutionPS {
         }
 
         System.out.println("X = "+x+" Y = "+y);
-        fillColor(x+1,y,oldColor,newColor,row,col,board);
+               fillColor(x+1,y,oldColor,newColor,row,col,board);
         board[x][y] = newColor;
         System.out.println("X = "+x+" Y = "+y);
         fillColor(x,y+1,oldColor,newColor,row,col,board);
