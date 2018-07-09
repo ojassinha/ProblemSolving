@@ -7,4 +7,8 @@ public interface GFGProblemsPS {
 
 
     public void floodFillAlgo(int[][] originalColor,int x,int y, int newColor);
+
+    public void uglyNumbers(int n);
+
+    public void Fibonacci(int n);
 }

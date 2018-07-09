@@ -2,6 +2,8 @@ package com.zedrays.GFG;
 
 import com.zedrays.Common.BasicExecutionPS;
 
+import java.util.Arrays;
+
 /**
  * Created by zedray on 5/11/18.
  */
@@ -14,6 +16,10 @@ public class GFGProblemPSImpl implements GFGProblemsPS, BasicExecutionPS {
             // https://www.geeksforgeeks.org/flood-fill-algorithm-implement-fill-paint/
             case "FLOOD_FILL":
                 runFloodFillAlgo();
+            case "UGLY":
+                uglyNumbers(10);
+            case "FIBONACCI":
+                Fibonacci(10);
         }
     }
 
@@ -84,8 +90,68 @@ public class GFGProblemPSImpl implements GFGProblemsPS, BasicExecutionPS {
         board[x][y] = newColor;
 
 
+    }
 
+
+    @Override
+    public void uglyNumbers(int n) {
+
+        int[] ugly = new int[n];
+        ugly[0] = 1;
+
+        int i2 = 1;
+        int i3 = 1;
+        int i5 = 1;
+
+        int ugly_2 = 2*i2;
+        int ugly_3 = 3*i3;
+        int ugly_5 = 5*i5;
+
+        for(int i = 1; i<n;i++){
+
+            ugly[i] = Math.min(ugly_5,Math.min(ugly_2,ugly_3));
+
+            if(ugly[i] == ugly_2){
+                i2++;
+                ugly_2 = ugly_2*i2;
+            }
+
+            if(ugly[i] == ugly_3){
+                i3++;
+                ugly_3 = ugly_3*i3;
+            }
+
+            if(ugly[i] == ugly_5){
+                i5++;
+                ugly_5 = ugly_5*i5;
+            }
+        }
+
+        Arrays.stream(ugly)
+                .forEach(name -> System.out.print(name));
 
     }
+
+    @Override
+    public void Fibonacci(int n) {
+
+        int[] fib = new int[n+1];
+
+        fib[0] = 0;
+        fib[1] = 1;
+
+        int response = calculateFibDynamic(fib,n);
+        System.out.println(response);
+    }
+
+    private int calculateFibDynamic(int[] fib,int n){
+
+       for(int i =2;i<=n;i++){
+         fib[i] = fib[i-1] + fib[i-2];
+       }
+       return fib[n];
+
+    }
+
 
 }

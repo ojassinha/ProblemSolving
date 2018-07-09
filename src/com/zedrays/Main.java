@@ -35,7 +35,7 @@ public class Main {
 
         //https://www.geeksforgeeks.org/flood-fill-algorithm-implement-fill-paint/
           BasicExecutionPS psExec = gfgCommon.returnPSProblem();
-          psExec.run("FLOOD_FILL");
+          psExec.run("FIBONACCI");
 
     }
 }
