@@ -1,10 +1,8 @@
 package com.zedrays;
 
-import com.zedrays.Common.BasicExecutionDS;
-import com.zedrays.Common.BasicExecutionPS;
-import com.zedrays.Common.CommonFactory;
-import com.zedrays.Common.TreeNode;
+import com.zedrays.Common.*;
 import com.zedrays.GFG.CommonImplGFG;
+import com.zedrays.GFG.GFGProblemsDS;
 import com.zedrays.hackerrank.CommonImplHR;
 
 public class Main {
@@ -23,19 +21,19 @@ public class Main {
          */
 
 
-//        CommonFactory hrCommon = new CommonImplHR();
-//        BasicExecutionPS execution = hrCommon.returnPSProblem();
-//        execution.run("");
+        //CommonFactory hrCommon = new CommonImplHR();
+        //BasicExecutionPS execution = hrCommon.returnPSProblem();
+        //execution.run("getways");
 
-          CommonFactory gfgCommon = new CommonImplGFG();
-        //BasicExecutionDS dsExec = gfgCommon.returnDSProblem();
-//        TreeNode node=  dsExec.build();
-       // dsExec.run("topview",node);
-        //dsExec.run("lot",node);
+            CommonFactory gfgCommon = new CommonImplGFG();
+            BasicExecutionDS dsExec = gfgCommon.returnDSProblem();
+            Graph node=  dsExec.buildGraph();
+            dsExec.runGraph("bfs",node);
+            //dsExec.run("lot",node);
 
         //https://www.geeksforgeeks.org/flood-fill-algorithm-implement-fill-paint/
-          BasicExecutionPS psExec = gfgCommon.returnPSProblem();
-          psExec.run("FIBONACCI");
+        //  BasicExecutionPS psExec = gfgCommon.returnPSProblem();
+        //  psExec.run("FIBONACCI");
 
     }
 }

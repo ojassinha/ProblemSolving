@@ -2,6 +2,7 @@ package com.zedrays.GFG;
 
 import apple.laf.JRSUIUtils;
 import com.zedrays.Common.BasicExecutionDS;
+import com.zedrays.Common.Graph;
 import com.zedrays.Common.TreeNode;
 import com.zedrays.GFG.Utilities.QItem;
 
@@ -12,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by zedray on 2/9/18.
  */
 public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
+
 
     @Override
     public void run(String problemName,TreeNode node) {
@@ -27,6 +29,37 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
                 System.out.print("Error in execution, please give proper problem name");
         }
 
+    }
+
+
+    @Override
+    public void graphBFS(int sourceNode) {
+        if(this.graph != null){
+            Queue<Integer> queue = new LinkedList<Integer>();
+            queue.add(sourceNode);
+
+            boolean[] visited = new boolean[graph.V];
+
+
+
+            while (!queue.isEmpty()){
+
+                sourceNode = queue.poll();
+                System.out.println("Current node picked up : " + sourceNode);
+
+                visited[sourceNode] = true;
+
+                Iterator<Integer> iterator = graph.nodes[sourceNode].listIterator();
+                while (iterator.hasNext()){
+                    int n = iterator.next();
+                    if(!visited[n]){
+                        queue.add(n);
+                        visited[n] = true;
+                    }
+
+                }
+            }
+        }
     }
 
     TreeNode rootNode;
@@ -95,6 +128,32 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
                 queue.add(newNode.getLeftTreeNode());
             if(newNode.getRightTreeNode() != null)
                 queue.add(newNode.getRightTreeNode());
+        }
+    }
+
+    Graph graph;
+    @Override
+    public Graph buildGraph() {
+        graph = new Graph(10);
+        graph.addEdge(0,1);
+        graph.addEdge(1,2);
+        graph.addEdge(2,0);
+        graph.addEdge(0,2);
+        graph.addEdge(2,3);
+        graph.addEdge(3,3);
+
+        return graph;
+    }
+
+    @Override
+    public void runGraph(String problemName, Graph graph) {
+        switch (problemName){
+            case "bfs":
+                graphBFS(2);
+                break;
+
+            default:
+                System.out.print("Error in execution, please give proper problem name");
         }
     }
 

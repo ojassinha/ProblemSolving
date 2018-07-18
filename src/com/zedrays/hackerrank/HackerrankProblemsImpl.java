@@ -2,6 +2,7 @@ package com.zedrays.hackerrank;
 
 import com.zedrays.Common.BasicExecutionPS;
 
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 /**
@@ -16,10 +17,54 @@ public class HackerrankProblemsImpl implements HackerrankProblems , BasicExecuti
             case "nameofwinner" :
                 this.nameOfWinner();
                 break;
+            case "getways" :
+                this.runGetWays();
+                break;
+            case "equal" :
+                this.equal();
+                break;
             default :
                 this.helloWorld();
         }
     }
+
+
+
+    @Override
+    public void runGetWays() {
+
+        long[] options = new long[]{2l,5l,3l,6l};
+        long response = this.getWays(10,options);
+        System.out.println(response);
+    }
+
+    @Override
+    public void equal() {
+
+
+
+    }
+
+    private void runEqual(int[] arr){
+
+    }
+
+    private long getWays(long n, long[] c){
+
+        if(n == 0l)
+            return 1;
+
+        long[] table = new long[(int)n+1];
+        table[0] = 1l;
+        for(long i =0l;i<Long.valueOf(c.length);i++){
+            for(long j = c[(int)i];j<=n;j++)
+                table[(int)j] += table[(int)j-(int)c[(int)i]];
+        }
+
+        return table[(int)n];
+
+    }
+
 
     public void helloWorld(){
         System.out.println("Hello Mars , about to land");

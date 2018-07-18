@@ -12,5 +12,8 @@ public interface BasicExecutionDS {
     TreeNode insert(int data, TreeNode rootTreeNode);
     void delete(int data,TreeNode rootTreeNode);
     TreeNode search(int data);
+
+    Graph buildGraph();
+    void runGraph(String problemName,Graph graph);
 }
 

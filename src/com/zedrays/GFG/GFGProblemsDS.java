@@ -12,4 +12,5 @@ public interface GFGProblemsDS {
 
     void printLevelOrderTraversal(TreeNode rootNode);
 
+    void graphBFS(int sourceNode);
 }
