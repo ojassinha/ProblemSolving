@@ -9,7 +9,7 @@ public class Graph {
 
     public int V;
 
-    public LinkedList<Integer> nodes[];
+    public LinkedList<GraphEdge> nodes[];
 
     public Graph(int v){
         this.V = v;
@@ -18,7 +18,8 @@ public class Graph {
             nodes[i] = new LinkedList();
     }
 
-    public void addEdge(int u,int w){
-        nodes[u].add(w);
+    public void addEdge(int u,int w,int weight){
+        GraphEdge edge = new GraphEdge(w,weight);
+        nodes[u].add(edge);
     }
 }

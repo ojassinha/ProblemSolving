@@ -1,6 +1,7 @@
 package com.zedrays.GFG;
 
 import com.zedrays.Common.CommonFactory;
+import com.zedrays.Common.Graph;
 import com.zedrays.Common.TreeNode;
 
 /**
@@ -13,4 +14,6 @@ public interface GFGProblemsDS {
     void printLevelOrderTraversal(TreeNode rootNode);
 
     void graphBFS(int sourceNode);
+
+    void DjikstraAlgo(Graph graph, int sourceNode);
 }

@@ -3,6 +3,7 @@ package com.zedrays.GFG;
 import apple.laf.JRSUIUtils;
 import com.zedrays.Common.BasicExecutionDS;
 import com.zedrays.Common.Graph;
+import com.zedrays.Common.GraphEdge;
 import com.zedrays.Common.TreeNode;
 import com.zedrays.GFG.Utilities.QItem;
 
@@ -49,9 +50,9 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
 
                 visited[sourceNode] = true;
 
-                Iterator<Integer> iterator = graph.nodes[sourceNode].listIterator();
+                Iterator<GraphEdge> iterator = graph.nodes[sourceNode].listIterator();
                 while (iterator.hasNext()){
-                    int n = iterator.next();
+                    int n = iterator.next().getW();
                     if(!visited[n]){
                         queue.add(n);
                         visited[n] = true;
@@ -60,6 +61,51 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
                 }
             }
         }
+    }
+
+    @Override
+    public void DjikstraAlgo(Graph graph,int sourceNode) {
+
+
+        if(this.graph != null){
+
+            SortedSet<Integer> unvisitedNodes = new TreeSet<>();
+            boolean[] visited = new boolean[graph.V];
+
+            int[] weights = new int[graph.V];
+            weights[0] = 0;
+            for(int i = 1;i<graph.V;i++){
+                weights[i] = Integer.MAX_VALUE;
+            }
+
+            unvisitedNodes.add(0);
+
+            while (!unvisitedNodes.isEmpty()){
+
+                int minimumDistanceElement = unvisitedNodes.first();
+                visited[minimumDistanceElement] = true;
+
+                Iterator<GraphEdge> itr = graph.nodes[unvisitedNodes.first()].listIterator();
+                while(itr.hasNext()){
+                    if(!visited[itr.next().getW()]){
+                        unvisitedNodes.add(itr.next().getW());
+                        weights[itr.next().getW()] = Math.min(weights[itr.next().getW()],weights[itr.next().getW()]
+                                +weights[unvisitedNodes.first()]);
+                    }
+                }
+
+                unvisitedNodes.remove(minimumDistanceElement);
+
+
+            }
+
+            for(int i = 0;i < weights.length;i++){
+                System.out.print(weights[i]+" ");
+            }
+
+        }
+
+
     }
 
     TreeNode rootNode;
@@ -135,12 +181,16 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
     @Override
     public Graph buildGraph() {
         graph = new Graph(10);
-        graph.addEdge(0,1);
-        graph.addEdge(1,2);
-        graph.addEdge(2,0);
-        graph.addEdge(0,2);
-        graph.addEdge(2,3);
-        graph.addEdge(3,3);
+//        graph.addEdge(0,1,0);
+//        graph.addEdge(1,2,0);
+//        graph.addEdge(2,0,0);
+//        graph.addEdge(0,2,0);
+//        graph.addEdge(2,3,0);
+//        graph.addEdge(3,3,0);
+
+        graph.addEdge(0,1,4);
+        graph.addEdge(0,7,8);
+        graph.addEdge(1,2,8);
 
         return graph;
     }
@@ -159,6 +209,7 @@ public class GFGProblemsDSImpl implements GFGProblemsDS, BasicExecutionDS {
 
     @Override
     public TreeNode build() {
+
 
         this.rootNode =  new TreeNode(1);
         rootNode.setLeftTreeNode(new TreeNode(2));
